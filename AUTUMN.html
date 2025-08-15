@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autumn Collection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Top page title */
+    .page-title {
+      text-align: center;
+      font-size: 2rem;
+      margin: 1rem 0;
+      font-weight: bold;
+      color: #a0522d;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #a0522d;
+      padding: 0.8rem 2rem;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #ffd700;
+    }
+
+    /* Cart in navbar */
+    .cart-container {
+      position: relative;
+      cursor: pointer;
+      color: white;
+    }
+
+    #cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+      font-weight: bold;
+      display: none;
+    }
+
+    /* Product grid */
+    #product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .product-card {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .cart-btn {
+      margin-top: 5px;
+      padding: 5px 10px;
+      background-color: #000;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    /* Cart sidebar */
+    #cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 350px;
+      height: 100%;
+      background: white;
+      box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+      padding: 1rem;
+      overflow-y: auto;
+      transition: right 0.3s ease;
+      z-index: 1000;
+    }
+
+    #cart-sidebar.open {
+      right: 0;
+    }
+
+    #cart-sidebar h2 {
+      margin-top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #cart-close {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #a0522d;
+    }
+
+    #cart-items li {
+      margin-bottom: 0.5rem;
+    }
+
+    .remove-btn {
+      margin-left: 10px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #a0522d;
+      font-weight: bold;
+    }
+
+    #cart-total {
+      margin-top: 1rem;
+      font-weight: bold;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Autumn Collection Title -->
+    <div class="page-title">Autumn Collection</div>
+
+    <!-- Navbar with cart icon -->
+    <nav class="navbar">
+      <ul class="nav-list">
+        <li><a href="HOME.html" class="nav-link">Home</a></li>
+        <li><a href="WINTER.html" class="nav-link">Winter</a></li>
+        <li><a href="spring.html" class="nav-link">Spring</a></li>
+        <li><a href="SUMMER.html" class="nav-link">Summer</a></li>
+        <li><a href="AUTUMN.html" class="nav-link active">Autumn</a></li>
+      </ul>
+      <div class="cart-container">
+        <i class="fas fa-shopping-cart fa-2x"></i>
+        <span id="cart-count">0</span>
+      </div>
+    </nav>
+
+    <!-- Product grid -->
+    <div id="product-grid"></div>
+
+    <!-- Cart sidebar -->
+    <div id="cart-sidebar">
+      <h2>
+        Your Cart
+        <button id="cart-close" aria-label="Close cart">&times;</button>
+      </h2>
+      <ul id="cart-items">
+        <li>Your cart is empty.</li>
+      </ul>
+      <div id="cart-total">Total: 0 RWF</div>
+    </div>
+
+    <script>
+      const products = [
+        { id: 1, name: "Two Pieces set", price: 25000, image: "two piece set.jpg" },
+        { id: 2, name: "Short skirt", price: 40000, image: "img2.jpg" },
+        { id: 4, name: "Warm Long Jacket", price: 4500, image: "Long sleeve Jacket.jpg" },
+        { id: 5, name: "Chicago set", price: 15000, image: "chicago.jpg" },
+        { id: 6, name: "Jacket", price: 6700, image: "jacket.jpg" },
+        { id: 7, name: "Long Sleeve Jacket", price: 12000, image: "jqcket2.jpg" },
+        { id: 8, name: "Short dress", price: 10000, image: "gdress.jpg" },
+        { id: 9, name: "White dress", price: 12000, image: "dress 2.jpg" },
+        { id: 10, name: "Warm Bottom", price: 17500, image: "child.jpg" },
+        { id: 11, name: "Warm skirt", price: 12500, image: "s1.jpg" },
+        { id: 12, name: "White pant", price: 20500, image: "s3.jpg" },
+        { id: 13, name: "Cute top", price: 30500, image: "s4.jpg" },
+        { id: 14, name: "Colorful skirt", price: 34500, image: "s5.jpg" },
+        { id: 15, name: "Bougie grey pant", price: 67500, image: "s6.jpg" },
+        { id: 16, name: "Black jean", price: 86500, image: "s7.jpg" },
+        { id: 17, name: "Black dress", price: 45500, image: "s8.jpg" },
+        { id: 18, name: "Grey dress", price: 45500, image: "s9.jpg" },
+        { id: 19, name: "Autumn special set", price: 123500, image: "s10.jpg" },
+        { id: 20, name: "Autumn whole set", price: 250500, image: "s11.jpg" },
+        { id: 21, name: "Black jacket", price: 123500, image: "s12.jpg" }
+      ];
+
+      const productGrid = document.getElementById('product-grid');
+      const cartCountEl = document.getElementById('cart-count');
+      const cartSidebar = document.getElementById('cart-sidebar');
+      const cartItemsList = document.getElementById('cart-items');
+      const cartTotalEl = document.getElementById('cart-total');
+      const cartCloseBtn = document.getElementById('cart-close');
+      let cart = {};
+
+      function renderProducts() {
+        productGrid.innerHTML = products.map(p => `
+          <div class="product-card" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}">
+            <img src="${p.image}" alt="${p.name}">
+            <p class="name">${p.name}</p>
+            <p class="price">${p.price.toLocaleString()} RWF</p>
+            <span class="cart-btn add-to-cart" role="button" aria-label="Add ${p.name} to cart">
+              <i class="fas fa-cart-plus"></i>
+            </span>
+          </div>
+        `).join('');
+
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const card = btn.closest('.product-card');
+            const id = card.dataset.id;
+            const name = card.dataset.name;
+            const price = parseFloat(card.dataset.price);
+
+            if (cart[id]) {
+              cart[id].quantity += 1;
+            } else {
+              cart[id] = { name, price, quantity: 1 };
+            }
+            updateCartUI();
+          });
+        });
+      }
+
+      function updateCartUI() {
+        const items = Object.values(cart);
+        cartItemsList.innerHTML = '';
+
+        if (items.length === 0) {
+          cartItemsList.innerHTML = '<li>Your cart is empty.</li>';
+          cartCountEl.style.display = 'none';
+          cartTotalEl.textContent = 'Total: 0 RWF';
+          return;
+        }
+
+        const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
+        cartCountEl.textContent = totalQuantity;
+        cartCountEl.style.display = 'inline-block';
+
+        items.forEach((item, index) => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            ${item.name} x${item.quantity} - ${(item.price * item.quantity).toLocaleString()} RWF
+            <button class="remove-btn" data-id="${Object.keys(cart)[index]}" aria-label="Remove ${item.name}">&times;</button>
+          `;
+          cartItemsList.appendChild(li);
+        });
+
+        const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        cartTotalEl.textContent = `Total: ${totalPrice.toLocaleString()} RWF`;
+
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            delete cart[id];
+            updateCartUI();
+          });
+        });
+      }
+
+      document.querySelector('.cart-container').addEventListener('click', () => {
+        cartSidebar.classList.toggle('open');
+      });
+
+      cartCloseBtn.addEventListener('click', () => {
+        cartSidebar.classList.remove('open');
+      });
+
+      renderProducts();
+    </script>
+  </div>
+</body>
+</html>

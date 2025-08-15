@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SNOW - Stay warm but in fashion</title>
+<link rel="stylesheet" href="winterr style.css">
+<style>
+/* Cart functionality styles */
+.cart-icon { position: relative; cursor: pointer; font-size: 1.5rem; }
+.cart-count { position: absolute; top: -8px; right: -8px; background: red; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; }
+.cart-sidebar { position: fixed; top: 0; right: -350px; width: 300px; height: 100%; background: #fff; box-shadow: -2px 0 8px rgba(0,0,0,0.3); padding: 20px; overflow-y: auto; transition: right 0.3s ease; z-index: 1000; }
+.cart-sidebar.open { right: 0; }
+.cart-sidebar h3 { margin-top: 0; }
+.cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+.remove-item { color: red; cursor: pointer; font-size: 0.9rem; }
+.close-cart { cursor: pointer; background: #ccc; padding: 5px 10px; display: inline-block; margin-bottom: 10px; }
+.cart-btn { font-size: 1.3rem; background: none; border: none; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#winter" class="nav-link">Winter</a></li>
+            <li><a href="#spring" class="nav-link">Spring</a></li>
+            <li><a href="#summer" class="nav-link">Summer</a></li>
+            <li><a href="#autumn" class="nav-link">Autumn</a></li>
+        </ul>
+    </nav>
+
+    <header class="header">
+        <div class="snowflake snowflake-1">❄</div>
+        <div class="snowflake snowflake-2">❄</div>
+        <div class="snowflake snowflake-3">❄</div>
+        <div class="snowflake snowflake-4">❄</div>
+        <div class="sparkle sparkle-1">✦</div>
+        <div class="sparkle sparkle-2">✦</div>
+        <div class="sparkle sparkle-3">✧</div>
+        <div class="sparkle sparkle-4">✧</div>
+        <div class="sparkle sparkle-5">✦</div>
+        <h1 class="title">
+            <span class="letter">S</span>
+            <span class="letter">N</span>
+            <span class="letter snowflake-letter">❄</span>
+            <span class="letter">W</span>
+        </h1>
+        <p class="tagline">Stay warm but in fashion</p>
+    </header>
+
+    <section class="products">
+        <div class="product-grid">
+
+            <!-- LV Coat -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=400&fit=crop&crop=center" alt="Woman in black coat">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">LV Coat</h3>
+                    <p class="product-price">$5500 per piece</p>
+                    <div class="cart"><button class="cart-btn">🛒</button></div>
+                    <div class="quantity">
+                        <p>Number needed:</p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus">-</button>
+                            <span class="qty-number">2</span>
+                            <button class="qty-btn plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boots -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="bettyblack.jpg" alt="Woman in red coat">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Boots</h3>
+                    <p class="product-price">$35.99 per piece</p>
+                    <div class="cart"><button class="cart-btn">🛒</button></div>
+                    <div class="quantity">
+                        <p>Number needed:</p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus">-</button>
+                            <span class="qty-number">2</span>
+                            <button class="qty-btn plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wool Gloves -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="gloves.jpg" alt="Gloves">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">wool gloves</h3>
+                    <p class="product-price">$2599 per piece</p>
+                    <div class="cart"><button class="cart-btn">🛒</button></div>
+                    <div class="quantity">
+                        <p>Number needed:</p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus">-</button>
+                            <span class="qty-number">1</span>
+                            <button class="qty-btn plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ear Muffs -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="ears.jpg" alt="Woman in beige coat">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Ear muffs</h3>
+                    <p class="product-price">$1259 per piece</p>
+                    <div class="cart"><button class="cart-btn">🛒</button></div>
+                    <div class="quantity">
+                        <p>Number needed:</p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus">-</button>
+                            <span class="qty-number">2</span>
+                            <button class="qty-btn plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sweater -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="Cable-Knit Round Neck Sweater.jpg" alt="Woman in beige coat">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Sweater</h3>
+                    <p class="product-price">$3259 per piece</p>
+                    <div class="cart"><button class="cart-btn">🛒</button></div>
+                    <div class="quantity">
+                        <p>Number needed:</p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus">-</button>
+                            <span class="qty-number">2</span>
+                            <button class="qty-btn plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skirt -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="skirtss.jpg" alt="Woman in beige coat">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">skirt</h3>
+                    <p class="product-price">$1159 per piece</p>
+                    <div class="cart"><button class="cart-btn">🛒</button></div>
+                    <div class="quantity">
+                        <p>Number needed:</p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus">-</button>
+                            <span class="qty-number">2</span>
+                            <button class="qty-btn plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jeans -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fittt.jpg" alt="Woman in beige coat">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">jeans</h3>
+                    <p class="product-price">$2559 per piece</p>
+                    <div class="cart"><button class="cart-btn">🛒</button></div>
+                    <div class="quantity">
+                        <p>Number needed:</p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus">-</button>
+                            <span class="qty-number">2</span>
+                            <button class="qty-btn plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cargo Skirt -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="Dark Grey Casual Collar  Woven Fabric Plain Straight Embellished Non-Stretch  Women Clothing.jpg" alt="Woman in beige coat">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">cargo skirt</h3>
+                    <p class="product-price">$4559 per piece</p>
+                    <div class="cart"><button class="cart-btn">🛒</button></div>
+                    <div class="quantity">
+                        <p>Number needed:</p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus">-</button>
+                            <span class="qty-number">2</span>
+                            <button class="qty-btn plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cart-sidebar">
+    <div class="close-cart" id="close-cart">Close</div>
+    <h3>Your Cart</h3>
+    <div id="cart-items"></div>
+    <p id="cart-total"></p>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const navList = document.querySelector(".nav-list");
+    const cartNavItem = document.createElement("li");
+    cartNavItem.innerHTML = `<span class="cart-icon" id="navbar-cart">🛒<span class="cart-count" id="cart-count">0</span></span>`;
+    navList.appendChild(cartNavItem);
+
+    const cartSidebar = document.getElementById("cart-sidebar");
+    const cartCountEl = document.getElementById("cart-count");
+    const cartItemsEl = document.getElementById("cart-items");
+    const cartTotalEl = document.getElementById("cart-total");
+
+    const cart = [];
+
+    document.getElementById("navbar-cart").addEventListener("click", () => cartSidebar.classList.add("open"));
+    document.getElementById("close-cart").addEventListener("click", () => cartSidebar.classList.remove("open"));
+
+    document.querySelectorAll(".cart-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const productCard = btn.closest(".product-card");
+            const title = productCard.querySelector(".product-title").textContent;
+            const price = parseFloat(productCard.querySelector(".product-price").textContent.replace(/[^0-9.]/g, ""));
+            const qty = parseInt(productCard.querySelector(".qty-number").textContent);
+            const existing = cart.find(item => item.title === title);
+            if (existing) existing.quantity += qty;
+            else cart.push({ title, price, quantity: qty });
+            updateCart();
+        });
+    });
+
+    document.querySelectorAll(".qty-btn.minus").forEach(btn => btn.addEventListener("click", () => {
+        const qtyEl = btn.parentElement.querySelector(".qty-number");
+        let qty = parseInt(qtyEl.textContent);
+        if (qty > 1) qty--;
+        qtyEl.textContent = qty;
+    }));
+
+    document.querySelectorAll(".qty-btn.plus").forEach(btn => btn.addEventListener("click", () => {
+        const qtyEl = btn.parentElement.querySelector(".qty-number");
+        qtyEl.textContent = parseInt(qtyEl.textContent) + 1;
+    }));
+
+    function updateCart() {
+        let totalQty = 0, totalPrice = 0;
+        cartItemsEl.innerHTML = "";
+        cart.forEach((item, index) => {
+            totalQty += item.quantity;
+            totalPrice += item.price * item.quantity;
+
+            const itemEl = document.createElement("div");
+            itemEl.classList.add("cart-item");
+            itemEl.innerHTML = `
+                <span>${item.title} x ${item.quantity}</span>
+                <span>$${(item.price * item.quantity).toFixed(2)} 
+                    <span class="remove-item" data-index="${index}">✖</span>
+                </span>`;
+            cartItemsEl.appendChild(itemEl);
+        });
+        cartCountEl.textContent = totalQty;
+        cartTotalEl.textContent = `Total: $${totalPrice.toFixed(2)}`;
+
+        document.querySelectorAll(".remove-item").forEach(btn => btn.addEventListener("click", () => {
+            const index = parseInt(btn.dataset.index);
+            cart.splice(index, 1);
+            updateCart();
+        }));
+    }
+});
+</script>
+</body>
+</html>

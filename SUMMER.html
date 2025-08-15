@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUMMER</title>
+  <link rel="stylesheet" href="new.css" />
+  <!-- FontAwesome for cart icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <style>
+    
+
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+body {
+    background-color: #fefdfc;
+    color: #333;
+}
+
+header, .product-nav {
+    background-color: #e8e1e1;
+    color: rgb(23, 20, 20);
+    padding: 15px;
+    text-align: center;
+    position: relative;
+}
+header
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.tabs a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+/* Cart icon as part of the nav bar */
+#cart-icon {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-right: 15px; /* optional spacing from left of nav items */
+}
+
+#cart-count {
+    margin-left: 5px;
+    background: red;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    display: none;
+    vertical-align: middle;
+}
+
+.container, .product-grid {
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 0 16px 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: white;
+    border-radius: 5px;
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#cart-sidebar {
+    position: fixed;
+    right: -300px;
+    top: 0;
+    height: 100%;
+    width: 300px;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    transition: right 0.3s ease;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+#cart-sidebar.open {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-close-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.add-cart-btn, .cart-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: #282727;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.add-cart-btn:hover, .cart-icon:hover {
+    color: #cbc8c7;
+}
+
+    
+    #cart-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.8rem;
+      color: black;
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px; /* Push icon slightly lower */
+    }
+
+    #cart-count {
+      margin-left: 5px;
+      background: rgb(13, 12, 12);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: bold;
+      border-radius: 50%;
+      padding: 2px 6px;
+      display: none;
+    }
+
+   
+
+
+    #cart-sidebar {
+      position: fixed;
+      right: -300px;
+      top: 0;
+      height: 100%;
+      width: 300px;
+      background: white;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+      transition: right 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+      z-index: 999;
+    }
+
+    #cart-sidebar.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-close-btn {
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+
+    .add-cart-btn, .cart-icon {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: #aa8c77;
+      display: inline-block;
+      margin-top: 5px;
+    }
+
+    .add-cart-btn:hover, .cart-icon:hover {
+      color: #a0522d;
+    }
+  </style>
+</head>
+<body>
+  <!-- Cart icon top right -->
+  <div id="cart-icon" title="View Cart" aria-label="View Cart">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cart-count">0</span>
+  </div>
+  <h1>SUMMER</h1>
+  <section class="product-nav">
+   
+    <div class="tabs">
+      <a href="HOME.html">HOME</a>
+      <a href="WINTER.html">WINTER</a>
+      <a href="spring.html">SPRING</a>
+      <a href="SUMMER.html">SUMMER</a>
+      <a href="AUTUMN.html">AUTUMN</a>
+    </div>
+  </section>
+
+  <section class="product-grid">
+    <div
+      class="product-card"
+      data-id="1"
+      data-name="Chocolate cargo pants"
+      data-price="24.99"
+    >
+      <img src="0d544c669fdb48008de6600a81500f66.jpg" alt="Product" />
+      <p class="name">Chocolate cargo pants</p>
+      <p class="price">$24.99</p>
+      <span
+        class="cart-icon add-to-cart"
+        title="Add Chocolate cargo pants to cart"
+        role="button"
+        tabindex="0"
+        aria-label="Add Chocolate cargo pants to cart"
+      >
+        <i class="fas fa-shopping-cart"></i>
+      </span>
+    </div>
+    <div
+      class="product-card"
+      data-id="2"
+      data-name="Skyline Serenity Set"
+      data-price="44.99"
+    >
+      <img src="5d4abcd615227f20e02e3fa996160bd4.jpg" alt="Product" />
+      <p class="name">Skyline Serenity Set</p>
+      <p class="price">$44.99</p>
+      <span
+        class="cart-icon add-to-cart"
+        title="Add Skyline Serenity Set to cart"
+        role="button"
+        tabindex="0"
+        aria-label="Add Skyline Serenity Set to cart"
+      >
+        <i class="fas fa-shopping-cart"></i>
+      </span>
+    </div>
+    <div
+      class="product-card"
+      data-id="3"
+      data-name="Noir Blossom dress"
+      data-price="19.99"
+    >
+      <img src="7fcd37d8c903d5a9f4392dba519c631f.jpg" alt="Product" />
+      <p class="name">Noir Blossom dress</p>
+      <p class="price">$19.99</p>
+      <span
+        class="cart-icon add-to-cart"
+        title="Add Noir Blossom dress to cart"
+        role="button"
+        tabindex="0"
+        aria-label="Add Noir Blossom dress to cart"
+      >
+        <i class="fas fa-shopping-cart"></i>
+      </span>
+    </div>
+    <div
+      class="product-card"
+      data-id="4"
+      data-name="Beige pants"
+      data-price="49.99"
+    >
+      <img src="71fe734fd43d81f46262ec5642183455.jpg" alt="Product" />
+      <p class="name">Beige pants</p>
+      <p class="price">$49.99</p>
+      <span
+        class="cart-icon add-to-cart"
+        title="Add Beige pants to cart"
+        role="button"
+        tabindex="0"
+        aria-label="Add Beige pants to cart"
+      >
+        <i class="fas fa-shopping-cart"></i>
+      </span>
+    </div>
+    <div
+      class="product-card"
+      data-id="5"
+      data-name="Denim short"
+      data-price="23.55"
+    >
+      <img src="193c0d83aebdc95d4211f4f1acdaa6a9.jpg" alt="Product" />
+      <p class="name">Denim short</p>
+      <p class="price">$23.55</p>
+      <span
+        class="cart-icon add-to-cart"
+        title="Add Denim short to cart"
+        role="button"
+        tabindex="0"
+        aria-label="Add Denim short to cart"
+      >
+        <i class="fas fa-shopping-cart"></i>
+      </span>
+    </div>
+    <div
+      class="product-card"
+      data-id="6"
+      data-name="Khaki short"
+      data-price="34.99"
+    >
+      <img src="411bed7cd70b572a4664b585488f7c5a.jpg" alt="Product" />
+      <p class="name">Khaki short</p>
+      <p class="price">$34.99</p>
+      <span
+        class="cart-icon add-to-cart"
+        title="Add Khaki short to cart"
+        role="button"
+        tabindex="0"
+        aria-label="Add Khaki short to cart"
+      >
+        <i class="fas fa-shopping-cart"></i>
+      </span>
+    </div>
+    <div
+      class="product-card"
+      data-id="7"
+      data-name="Urban Noir set"
+      data-price="34.99"
+    >
+      <img src="1638cfc7b6af50701ca6b1776bf3be6a.jpg" alt="Product" />
+      <p class="name">Urban Noir set</p>
+      <p class="price">$34.99</p>
+      <span
+        class="cart-icon add-to-cart"
+        title="Add Urban Noir set to cart"
+        role="button"
+        tabindex="0"
+        aria-label="Add Urban Noir set to cart"
+      >
+        <i class="fas fa-shopping-cart"></i>
+      </span>
+    </div>
+    <div
+      class="product-card"
+      data-id="8"
+      data-name="Denim pant & jacket"
+      data-price="34.99"
+    >
+      <img src="4661bc71764aba779e7c7df644ec5aca.jpg" alt="Product" />
+      <p class="name">Denim pant & jacket</p>
+      <p class="price">$34.99</p>
+      <span
+        class="cart-icon add-to-cart"
+        title="Add Denim pant & jacket to cart"
+        role="button"
+        tabindex="0"
+        aria-label="Add Denim pant & jacket to cart"
+      >
+        <i class="fas fa-shopping-cart"></i>
+      </span>
+    </div>
+    <div
+      class="product-card"
+      data-id="9"
+      data-name="Military style pants & jacket"
+      data-price="34.99"
+    >
+      <img src="88200ab31a2fdcb9fa9803ca3eaa06b0.jpg" alt="Product" />
+      <p class="name">Military style pants & jacket</p>
+      <p class="price">$34.99</p>
+      <span
+        class="cart-icon add-to-cart"
+        title="Add Military style pants & jacket to cart"
+        role="button"
+        tabindex="0"
+        aria-label="Add Military style pants & jacket to cart"
+      >
+        <i class="fas fa-shopping-cart"></i>
+      </span>
+    </div>
+    <div
+      class="product-card"
+      data-id="10"
+      data-name="Midnight Sketch Set"
+      data-price="34.99"
+    >
+      <img src="fc5e85bd53fd76982bcf5a790ea18835.jpg" alt="Product" />
+      <p class="name">Midnight Sketch Set</p>
+      <p class="price">$34.99</p>
+      <span
+        class="cart-icon add-to-cart"
+        title="Add Midnight Sketch Set to cart"
+        role="button"
+        tabindex="0"
+        aria-label="Add Midnight Sketch Set to cart"
+      >
+        <i class="fas fa-shopping-cart"></i>
+      </span>
+    </div>
+  </section>
+
+  <section class="deal">
+    <div class="deal-text">
+      <h3>Deal Of The Day</h3>
+      <p>
+        Limited time offer on our new arrivals. Get amazing discounts before the
+        time runs out!
+      </p>
+      <div class="countdown">
+        <span>03</span> : <span>08</span> : <span>09</span>
+      </div>
+      <a href="#" class="btn">Shop Now</a>
+    </div>
+    <div class="deal-img">
+      <img src="1ff7e3318dc6394315ae9fe17d627ad3.jpg" alt="Deal" />
+    </div>
+    <div class="deal-img">
+      <img src="8cd41a02cb95eb1d4648fc872006b1ab.jpg" alt="Deal" />
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h3>What People Say About Us</h3>
+    <div class="testimonial-cards">
+      <div class="card">
+        <p>"Amazing quality and fast delivery! Highly recommend."</p>
+        <span>- Jane Doe</span>
+      </div>
+      <div class="card">
+        <p>"Excellent service and great prices. Will shop again!"</p>
+        <span>- John Smith</span>
+      </div>
+      <div class="card">
+        <p>"Beautiful products that match the pictures exactly."</p>
+        <span>- Mary Johnson</span>
+      </div>
+    </div>
+  </section>
+
+  <aside id="cart-sidebar" aria-label="Shopping Cart" role="region" aria-live="polite" aria-atomic="true">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="cart-close-btn" id="cart-close-btn" aria-label="Close Cart">&times;</button>
+    </div>
+    <div id="cart-items">
+      <p>Your cart is empty.</p>
+    </div>
+    <div id="cart-total">Total: $0</div>
+  </aside>
+
+  <script>
+    // Grab elements
+    const cartIcon = document.getElementById('cart-icon');
+    const cartCount = document.getElementById('cart-count');
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const cartCloseBtn = document.getElementById('cart-close-btn');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartTotalDisplay = document.getElementById('cart-total');
+
+    // Cart object to hold items keyed by product id
+    let cart = {};
+
+    // Open cart sidebar
+    cartIcon.addEventListener('click', () => {
+      cartSidebar.classList.add('open');
+    });
+
+    // Close cart sidebar
+    cartCloseBtn.addEventListener('click', () => {
+      cartSidebar.classList.remove('open');
+    });
+
+    // Add to cart buttons
+    document.querySelectorAll('.add-to-cart').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const productCard = btn.closest('.product-card');
+        const id = productCard.dataset.id;
+        const name = productCard.dataset.name;
+        const price = parseFloat(productCard.dataset.price);
+
+        if (cart[id]) {
+          cart[id].quantity += 1;
+        } else {
+          cart[id] = { name, price, quantity: 1 };
+        }
+        updateCartUI();
+      });
+    });
+
+    function updateCartUI() {
+      const items = Object.values(cart);
+      cartItemsContainer.innerHTML = '';
+
+      if (items.length === 0) {
+        cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+        cartCount.style.display = 'none';
+        cartTotalDisplay.textContent = 'Total: $0';
+        return;
+      }
+
+      // Show cart count as total quantity
+      const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
+      cartCount.textContent = totalQuantity;
+      cartCount.style.display = 'inline-block';
+
+      // Render each cart item
+      items.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+
+        itemDiv.innerHTML = `
+          <span class="cart-item-name">${item.name}</span>
+          <span class="cart-item-quantity">x${item.quantity}</span>
+          <span class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</span>
+          <button class="cart-item-remove" aria-label="Remove ${item.name} from cart" data-id="${Object.keys(cart)[index]}">&times;</button>
+        `;
+
+        cartItemsContainer.appendChild(itemDiv);
+      });
+
+      // total price
+      const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      cartTotalDisplay.textContent = `Total: $${totalPrice.toFixed(2)}`;
+
+     
+      const removeButtons = cartItemsContainer.querySelectorAll('.cart-item-remove');
+      removeButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id;
+          if (cart[id]) {
+            delete cart[id];
+            updateCartUI();
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,385 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background:white;
+    min-height: 100vh;
+    color: #dac8a7;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+.header {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+.snowflake {
+    position: absolute;
+    color: #e0ebf0;
+    font-size: 3rem;
+    animation: twinkle 2s ease-in-out infinite alternate;
+    user-select: none;
+}
+
+.snowflake-1 {
+    top: 10%;
+    left: 8%;
+    font-size: 4rem;
+}
+
+.snowflake-2 {
+    top: 15%;
+    right: 12%;
+    font-size: 2.5rem;
+}
+
+.snowflake-3 {
+    bottom: 20%;
+    left: 5%;
+    font-size: 3.5rem;
+}
+
+.snowflake-4 {
+    bottom: 15%;
+    right: 8%;
+    font-size: 3rem;
+}
+
+
+.sparkle {
+    position: absolute;
+    color: #ffffff;
+    font-size: 1.5rem;
+    animation: sparkle 1.5s ease-in-out infinite alternate;
+    user-select: none;
+}
+
+.sparkle-1 {
+    top: 25%;
+    right: 20%;
+}
+
+.sparkle-2 {
+    top: 35%;
+    right: 15%;
+    font-size: 1rem;
+}
+
+.sparkle-3 {
+    bottom: 35%;
+    left: 15%;
+    font-size: 0.8rem;
+}
+
+.sparkle-4 {
+    bottom: 30%;
+    right: 25%;
+    font-size: 1.2rem;
+}
+
+.sparkle-5 {
+    top: 20%;
+    left: 25%;
+    font-size: 1rem;
+}
+
+
+.title {
+    font-size: 8rem;
+    font-weight: bold;
+    letter-spacing: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.letter {
+    display: inline-block;
+    color: transparent;
+    -webkit-text-stroke: 3px white;
+    text-stroke: 3px white;
+    font-family: 'Arial Black', sans-serif;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.snowflake-letter {
+    color: #d3dee2;
+    -webkit-text-stroke: none;
+    text-stroke: none;
+    text-shadow: 0 0 30px rgba(135, 206, 235, 0.8);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+
+.tagline {
+    font-size: 3rem;
+    font-weight: 300;
+    text-align: center;
+    color: #e0e0e0;
+    letter-spacing: 0.1rem;
+    margin-bottom: 3rem;
+}
+
+
+.products {
+    background:whitesmoke;
+    padding: 3rem 2rem;
+    border-radius: 30px 30px 0 0;
+    margin-top: 2rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    display: flex;
+    background: rgb(229, 211, 177);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.product-image {
+    flex: 1;
+    min-height: 250px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color:black
+}
+
+.product-price {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: black
+}
+
+.colors {
+    margin-bottom: 1rem;
+}
+
+.colors p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color:black
+}
+
+.color-options {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.color-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+.color-dot.blue {
+    background-color: #4a90e2;
+}
+
+.color-dot.red {
+    background-color: #e74c3c;
+}
+
+.color-dot.black {
+    background-color: #2c3e50;
+}
+
+.color-dot.brown {
+    background-color: #8b4513;
+}
+
+.quantity {
+    margin-top: auto;
+}
+
+.quantity p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: black;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.qty-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color:black;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.qty-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.qty-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+    min-width: 20px;
+    text-align: center;
+}
+
+
+@keyframes twinkle {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes sparkle {
+    0% {
+        opacity: 0.5;
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(180deg) scale(1.2);
+    }
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 30px rgba(135, 206, 235, 0.8);
+    }
+    100% {
+        text-shadow: 0 0 50px rgba(135, 206, 235, 1), 0 0 70px rgba(135, 206, 235, 0.5);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 4rem;
+        letter-spacing: 0.5rem;
+    }
+    
+    .tagline {
+        font-size: 1.8rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .product-card {
+        flex-direction: column;
+    }
+    
+    .snowflake {
+        font-size: 2rem;
+    }
+    
+    .snowflake-1 {
+        font-size: 2.5rem;
+    }
+}
+.cart-btn {
+  background-color: brown;       /* Blue background */
+  color: white;                    /* White text */
+  border: none;                   /* No border */
+  padding: 10px 20px;             /* Spacing inside the button */
+  border-radius: 5px;             /* Rounded corners */
+  cursor: pointer;                /* Pointer cursor on hover */
+  font-size: 1rem;                /* Comfortable font size */
+  font-weight: 600;               /* Slightly bold text */
+  transition: background-color 0.3s ease;
+}
+
+.cart-btn:hover {
+  background-color: black;     /* Darker blue when hovered */
+}
+.navbar {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* semi-transparent dark */
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #87ceeb; /* nice icy blue on hover/focus */
+}
